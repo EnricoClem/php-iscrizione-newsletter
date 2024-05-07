@@ -1,3 +1,9 @@
+<?php
+
+$userEmail = $_POST['email'] ?? null;
+var_dump($userEmail);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +20,11 @@
                 <h1>Iscriviti alla nostra newsletter</h1>
             </div>
             <div>
-                <form action="">
+                <form method="POST" action="">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Inserisci la tua mail...">
                     </div>
-                    <button type="button" class="btn btn-primary">Iscriviti</button>
+                    <input type="submit" class="btn btn-primary" value="Iscriviti">
                 </form>
             </div>
         </div>
