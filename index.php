@@ -3,6 +3,20 @@
 $userEmail = $_POST['email'] ?? null;
 var_dump($userEmail);
 
+$requiredChar = ['@', '.'];
+
+function emailCheck(string $userEmail, array $requiredChar){
+    foreach ($requiredChar as $char){
+       if (str_contains($userEmail, $char)){
+           return true;
+       }
+    }
+    return false;
+}
+
+$checkedEmeail = emailCheck($userEmail, $requiredChar);
+var_dump($checkedEmeail);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +40,7 @@ var_dump($userEmail);
                     </div>
                     <input type="submit" class="btn btn-primary" value="Iscriviti">
                 </form>
+                <div></div>
             </div>
         </div>
     </main>
