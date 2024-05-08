@@ -1,24 +1,11 @@
 <?php
 
+require_once __DIR__ . '/utilities.php';
+
 $userEmail = $_POST['email'];
 
 if($userEmail === ''){
     $userEmail = null;
-}
-
-var_dump($userEmail);
-
-function emailCheck($userEmail){
-    if(!$userEmail) {
-        return false;
-    }
-    if(strpos($userEmail, '@') === false) {
-        return false;
-    }
-    if(strpos($userEmail, '.') === false) {
-        return false;
-    }
-    return true;
 }
 
 ?>
