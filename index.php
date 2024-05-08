@@ -1,21 +1,25 @@
 <?php
 
-$userEmail = $_POST['email'] ?? null;
-var_dump($userEmail);
+$userEmail = $_POST['email'];
 
-$requiredChar = ['@', '.'];
-
-function emailCheck(string $userEmail, array $requiredChar){
-    foreach ($requiredChar as $char){
-       if (str_contains($userEmail, $char)){
-           return true;
-       }
-    }
-    return false;
+if($userEmail === ''){
+    $userEmail = null;
 }
 
-$checkedEmeail = emailCheck($userEmail, $requiredChar);
-var_dump($checkedEmeail);
+var_dump($userEmail);
+
+function emailCheck($userEmail){
+    if(!$userEmail) {
+        return false;
+    }
+    if(strpos($userEmail, '@') === false) {
+        return false;
+    }
+    if(strpos($userEmail, '.') === false) {
+        return false;
+    }
+    return true;
+}
 
 ?>
 <!DOCTYPE html>
@@ -36,11 +40,31 @@ var_dump($checkedEmeail);
             <div>
                 <form method="POST" action="">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Inserisci la tua mail...">
+                        <input type="text" class="form-control" name="email" placeholder="Inserisci la tua mail...">
                     </div>
                     <input type="submit" class="btn btn-primary" value="Iscriviti">
                 </form>
-                <div></div>
+                <?php
+                if($userEmail !== null) :
+                ?>
+                    <div class="mt-4">
+                        <?php
+                        if(emailCheck($userEmail)) :
+                        ?> 
+                            <div class="alert alert-success" role="alert">
+                            Registrazione avvenuta con successo!
+                            </div><?php
+                        else :
+                            ?><div class="alert alert-danger" role="alert">
+                            La mail inserita non è valida.
+                        </div><?php
+                        endif;
+                        ?>
+                    </div>
+                </div>
+                <?php
+                endif;
+                ?>
             </div>
         </div>
     </main>
